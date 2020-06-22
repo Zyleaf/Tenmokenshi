@@ -4,7 +4,7 @@
   "description": "A multi-purpose Discord bot!",
   "main": "src/index.js",
   "scripts": {
-    "start": "src/index.j"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,9 @@
   },
   "homepage": "https://github.com/Zyleaf/Tenmokenshi#readme",
   "dependencies": {
-    "discord.js": "^12.2.0"
+    "axios": "^0.19.2",
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "readdir-plus": "^1.1.1"
   }
 }
