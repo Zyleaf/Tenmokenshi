@@ -1,7 +1,7 @@
 {
   "name": "tenmokenshi",
   "version": "1.0.0",
-  "description": "\"# Tenmokenshi\"",
+  "description": "A multi-purpose Discord bot!",
   "main": "src/index.js",
   "scripts": {
     "start": "src/index.j"
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Zyleaf/Tenmokenshi/issues"
   },
-  "homepage": "https://github.com/Zyleaf/Tenmokenshi#readme"
+  "homepage": "https://github.com/Zyleaf/Tenmokenshi#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  }
 }

@@ -1,1 +1,2 @@
-"# Tenmokenshi" 
+# Tenmokenshi
+A multi-purpose Discord bot!
