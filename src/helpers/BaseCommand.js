@@ -1,10 +1,10 @@
 module.exports = class BaseCommand {
     constructor(client, message, permissions, args, parsedArgs) {
         this.client = client,
-        this.message = message,
-        this.permissions = permissions,
-        this.args = args,
-        this.parsedArgs = parsedArgs
+            this.message = message,
+            this.permissions = permissions,
+            this.args = args,
+            this.parsedArgs = parsedArgs
     }
 
     checkAndRun = () => {
@@ -19,5 +19,9 @@ module.exports = class BaseCommand {
 
     run = async (client, message, permissions, args, parsedArgs) => {
         this.message.channel.send(`This is just the base command!`);
-    };
+    }
+
+    randomInt = (min, max) => {
+        return Math.random() * (max - min) + min;
+    }
 }
