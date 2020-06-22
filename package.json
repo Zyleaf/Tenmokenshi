@@ -1,0 +1,24 @@
+{
+  "name": "tenmokenshi",
+  "version": "1.0.0",
+  "description": "\"# Tenmokenshi\"",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "src/index.j"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zyleaf/Tenmokenshi.git"
+  },
+  "keywords": [
+    "Discord",
+    "Zyleaf",
+    "Tenmokenshi"
+  ],
+  "author": "Zyleaf#1018",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Zyleaf/Tenmokenshi/issues"
+  },
+  "homepage": "https://github.com/Zyleaf/Tenmokenshi#readme"
+}
