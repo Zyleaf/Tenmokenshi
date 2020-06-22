@@ -17,5 +17,7 @@ module.exports = class BaseCommand {
         }
     }
 
-    run = async (client, message, permissions, args, parsedArgs) => {}
+    run = async (client, message, permissions, args, parsedArgs) => {
+        this.message.channel.send(`This is just the base command!`);
+    };
 }
