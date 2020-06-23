@@ -9,7 +9,7 @@ module.exports = registerCommands = (client) => {
             let { aliases } = command;
             
             client.commands.set(command.name.toUpperCase(), command);
-            if (aliases.length !== 0) { aliases.map(alias => client.aliases.set(alias.toUpperCase(), command)); };
+            if (aliases.length !== 0) { aliases.map((alias) => client.aliases.set(alias.toUpperCase(), command)); };
         }
     });
 };

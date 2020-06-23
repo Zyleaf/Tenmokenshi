@@ -6,10 +6,10 @@ module.exports = commandChecker = async (client, message, PREFIX) => {
         
         if (client.commands.get(commandName)) {
             let commandToExecute = client.commands.get(commandName);
-            commandToExecute.execute(client, message, commandToExecute.permissions, args, parsedArgs);
+            commandToExecute.execute(client, message, commandToExecute.permissions, args, parsedArgs, commandToExecute.cooldown, commandToExecute.usage);
         } else if (client.aliases.get(commandName)) {
             let commandToExecute = client.aliases.get(commandName);
-            commandToExecute.execute(client, message, commandToExecute.permissions, args, parsedArgs);
+            commandToExecute.execute(client, message, commandToExecute.permissions, args, parsedArgs, commandToExecute.cooldown, commandToExecute.usage);
         }
     }
 };
