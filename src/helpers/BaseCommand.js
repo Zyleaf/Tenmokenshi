@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const humanizeDuration = require('humanize-duration');
 
 module.exports = class BaseCommand {
-    constructor(client, message, permissions, args, parsedArgs, cooldown, usage) {
+    constructor(client, message, permissions, args, parsedArgs, cooldown, usage, name) {
         this.client = client,
         this.message = message,
         this.permissions = permissions,
@@ -10,6 +10,7 @@ module.exports = class BaseCommand {
         this.parsedArgs = parsedArgs
         this.cooldown = cooldown;
         this.usage = usage;
+        this.name = name;
     }
 
     checkPerms = () => {
@@ -21,8 +22,8 @@ module.exports = class BaseCommand {
     }
 
     checkArguments = () => {   
-        if (this.usage.length !== 0 && this.args.length !== this.usage.length) {
-            this.message.channel.send(`This command requires <${this.usage.join(', ')}> as its arguments!`);
+        if (this.args.length !== this.usage.length || this.args[0].slice(1).toUpperCase() === this.name.toUpperCase()) {
+            this.message.channel.send(this.embedBuilder(false, true, 'Missing argument(s)', false, false, `\`This command requires <${this.usage.join(', ')}> as its arguments!\``, false, false, true, false));
         } else {
             this.checkCooldown();
         }
