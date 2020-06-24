@@ -1,3 +1,7 @@
+const dotenv = require('dotenv').config();
+const mysql = require('mysql');
+const sql = mysql.createConnection({ host: process.env.DB_HOST, user: process.env.DB_USER, password: process.env.DB_PASSWORD, database: process.env.DB_DATABASE });
+
 module.exports = commandChecker = async (client, message, PREFIX) => {
     if (message.author.bot) return;
     
@@ -8,12 +12,10 @@ module.exports = commandChecker = async (client, message, PREFIX) => {
 
         if (client.commands.get(commandName)) {
             let commandToExecute = client.commands.get(commandName);
-            const { permissions, cooldown, usage, name } = commandToExecute;
-            commandToExecute.execute(client, message, permissions, args, parsedArgs, cooldown, usage, name);
+            commandToExecute.execute(client, message, commandToExecute.permissions, args, parsedArgs, commandToExecute.requiredArgs, commandToExecute.cooldown, commandToExecute.usage, commandToExecute.name, sql);
         } else if (client.aliases.get(commandName)) {
             let commandToExecute = client.aliases.get(commandName);
-            const { permissions, cooldown, usage, name } = commandToExecute;
-            commandToExecute.execute(client, message, permissions, args, parsedArgs, cooldown, usage, name);
+            commandToExecute.execute(client, message, commandToExecute.permissions, args, parsedArgs, commandToExecute.requiredArgs, commandToExecute.cooldown, commandToExecute.usage, commandToExecute.name, sql);
         }
     }
 };

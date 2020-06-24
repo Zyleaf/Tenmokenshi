@@ -2,15 +2,17 @@ const Discord = require('discord.js');
 const humanizeDuration = require('humanize-duration');
 
 module.exports = class BaseCommand {
-    constructor(client, message, permissions, args, parsedArgs, cooldown, usage, name) {
-        this.client = client,
-        this.message = message,
-        this.permissions = permissions,
-        this.args = args,
-        this.parsedArgs = parsedArgs
+    constructor(client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql) {
+        this.client = client;
+        this.message = message;
+        this.permissions = permissions;
+        this.args = args;
+        this.parsedArgs = parsedArgs;
+        this.requiredArgs = requiredArgs;
         this.cooldown = cooldown;
         this.usage = usage;
         this.name = name;
+        this.sql = sql;
     }
 
     checkPerms = () => {
@@ -21,9 +23,13 @@ module.exports = class BaseCommand {
         }
     }
 
-    checkArguments = () => {   
-        if (this.args.length !== this.usage.length || this.args[0].slice(1).toUpperCase() === this.name.toUpperCase()) {
-            this.message.channel.send(this.embedBuilder(false, true, 'Missing argument(s)', false, false, `\`This command requires <${this.usage.join(', ')}> as its arguments!\``, false, false, true, false));
+    checkArguments = () => {
+        if (this.requiredArgs) {
+            if (this.args.length !== this.usage.length || this.args[0].slice(1).toUpperCase() === this.name.toUpperCase()) {
+                this.message.channel.send(this.embedBuilder(false, true, 'Missing argument(s)', false, false, `\`This command requires <${this.usage.join(', ')}> as its arguments!\``, false, false, true, false));
+            } else {
+                this.checkCooldown();
+            }
         } else {
             this.checkCooldown();
         }
@@ -42,7 +48,7 @@ module.exports = class BaseCommand {
             }, this.cooldown);
         }
     }
-    
+
     run = async (client, message, permissions, args, parsedArgs) => {
         this.message.channel.send(`This is just the base command!`);
     }
