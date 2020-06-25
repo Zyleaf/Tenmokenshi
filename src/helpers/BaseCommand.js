@@ -19,14 +19,14 @@ module.exports = class BaseCommand {
         if (this.permissions.length === 0 || this.message.member.hasPermission([this.permissions])) {
             this.checkArguments();
         } else {
-            this.message.channel.send(this.embedBuilder(false, true, 'Missing permission(s)', false, false, `\`You require the ${this.permissions.join(', ')} permission(s)!\``, false, false, true, true));
+            this.message.channel.send(this.embedBuilder(true, true, false, false, false, `**You need the \`${this.permissions.join(', ')}\` permission(s)!**`, false, false, false, false));
         }
     }
 
     checkArguments = () => {
         if (this.requiredArgs) {
             if (this.args.length !== this.usage.length || this.args[0].slice(1).toUpperCase() === this.name.toUpperCase()) {
-                this.message.channel.send(this.embedBuilder(false, true, 'Missing argument(s)', false, false, `\`This command requires <${this.usage.join(', ')}> as its arguments!\``, false, false, true, false));
+                this.message.channel.send(this.embedBuilder(true, true, false, false, false, `**The valid arguments are <${this.usage.join(', ')}>**`, false, false, false, false));
             } else {
                 this.checkCooldown();
             }
@@ -39,7 +39,7 @@ module.exports = class BaseCommand {
         if (this.client.cooldown.has(this.message.author.id)) {
             const usedTime = this.client.cooldown.get(this.message.author.id);
             const remainingTime = humanizeDuration(((Date.now() - usedTime) - this.cooldown), { units: ['s'], round: true });
-            this.message.channel.send(this.embedBuilder(false, true, 'Take a break!', false, false, `Please wait \`${remainingTime}\` before using another command!`, false, false, true, true));
+            this.message.channel.send(this.embedBuilder(true, true, false, false, false, `**Please wait ${remainingTime} before using another command!**`, false, false, false, false));
         } else {
             this.run();
             this.client.cooldown.set(this.message.author.id, Date.now());
@@ -56,7 +56,9 @@ module.exports = class BaseCommand {
     embedBuilder = (color, author, title, url, thumbnail, description, fields, imageURL, timeStamp, footer) => {
         const builtEmbed = new Discord.MessageEmbed();
 
-        if (color) builtEmbed.setColor();
+        let user_embed_color = this.client.user_Embed_Settings.get(this.message.author.id) ? this.client.user_Embed_Settings.get(this.message.author.id) :  '#000000';
+        
+        if (color) builtEmbed.setColor(user_embed_color);
         if (author) builtEmbed.setAuthor(this.message.author.username, this.message.author.avatarURL());
         if (title) builtEmbed.setTitle(title);
         if (url) builtEmbed.setURL(url);
@@ -70,7 +72,6 @@ module.exports = class BaseCommand {
         if (imageURL) builtEmbed.setImage(imageURL);
         if (timeStamp) builtEmbed.setTimestamp();
         if (footer) builtEmbed.setFooter(`Requested by ${this.message.author.username}`, this.message.guild.iconURL());
-
 
         return builtEmbed;
     }

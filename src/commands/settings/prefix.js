@@ -8,7 +8,7 @@ class Prefix extends BaseCommand {
     run = async () => {
         const { client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql, embedBuilder } = this;
 
-        if (args[0].length > 1) return embedBuilder(false, true, false, false, false, `\`The prefix can't be longer than 1 character!\``, false, false, true, true);
+        if (args[0].length > 1) return embedBuilder(true, true, false, false, false, `\`The prefix can't be longer than 1 character!\``, false, false, true, true);
         sql.query('SELECT * FROM guild_Prefixes WHERE guild_id = ?;', [message.guild.id], (error, results) => {
             if (error) throw error;
 
@@ -17,13 +17,13 @@ class Prefix extends BaseCommand {
                     if (error) throw error;
                 });
                 client.prefixes.set(message.guild.id, args[0]);
-                message.channel.send(embedBuilder(false, true, false, false, false, `\`Set the prefix to ${args[0]}\``, false, false, true, true));
+                message.channel.send(embedBuilder(true, true, false, false, false, `**Set the prefix to \`${args[0]}\`**`, false, false, true, true));
             } else {
                 sql.query('UPDATE guild_Prefixes SET guild_prefix = ? WHERE guild_id = ?;', [args[0], message.guild.id], (error) => {
                     if (error) throw error;
                 });
                 client.prefixes.set(message.guild.id, args[0]);
-                message.channel.send(embedBuilder(false, true, false, false, false, `\`Set the prefix to ${args[0]}\``, false, false, true, true));
+                message.channel.send(embedBuilder(true, true, false, false, false, `**Set the prefix to \`${args[0]}\`**`, false, false, true, true));
             }
         });
     }
