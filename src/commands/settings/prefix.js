@@ -35,8 +35,8 @@ module.exports = {
     aliases: ['setPrefix'],
     requiredArgs: true,
     permissions: ['MANAGE_GUILD'],
-    description: 'Changes the server prefix!',
-    cooldown: 3000,
+    description: 'Change the server prefix!',
+    cooldown: 5000,
     execute: (client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql) => {
         let command = new Prefix(client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql);
         command.checkPerms();

@@ -18,7 +18,7 @@ module.exports = {
     requiredArgs: false,
     permissions: [],
     description: 'Sends back Pong!',
-    cooldown: 5000,
+    cooldown: 2000,
     execute: (client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql) => {
         let command = new Ping(client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql);
         command.checkPerms();

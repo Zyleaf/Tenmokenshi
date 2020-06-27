@@ -28,6 +28,7 @@
     "humanize-duration": "^3.23.1",
     "mysql": "^2.18.1",
     "readdir-plus": "^1.1.1",
+    "tenorjs": "^1.0.7",
     "valid-hex-color": "^1.1.1"
   }
 }
