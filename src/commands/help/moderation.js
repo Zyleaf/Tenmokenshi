@@ -7,8 +7,10 @@ class Moderation extends BaseCommand {
 
     run = async () => {
         const { client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql, embedBuilder } = this;
-        message.channel.send(embedBuilder(true, true, `List of general commands!`, false, false, false, [
-            
+        message.channel.send(embedBuilder(true, true, `List of moderation commands!`, false, false, false, [
+            { name: '`Kick`',  value: '\`\`\`Kick a member!\`\`\`', inline: true },
+            { name: '`Ban`',  value: '\`\`\`Ban a member!\`\`\`', inline: true },
+            { name: '`Clear`',  value: '\`\`\`Bulk delete messages!\`\`\`', inline: true }
         ], false, true, true));
     }
 }

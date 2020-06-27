@@ -7,7 +7,7 @@ class Utility extends BaseCommand {
 
     run = async () => {
         const { client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql, embedBuilder } = this;
-        message.channel.send(embedBuilder(true, true, `List of general commands!`, false, false, false, [
+        message.channel.send(embedBuilder(true, true, `List of utility commands!`, false, false, false, [
             
         ], false, true, true));
     }
