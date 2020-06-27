@@ -5,9 +5,10 @@ class Color extends BaseCommand {
     constructor(client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql) {
         super(client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql);
     }
-
+    
     run = async () => {
         const { client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql, embedBuilder } = this;
+        
         if (validHexColor.check(args[0])) {
             sql.query('SELECT * FROM user_Embed_Settings', (error, results) => {
                 if (error) throw error;
@@ -35,7 +36,7 @@ module.exports = {
     aliases: ['setColor'],
     requiredArgs: true,
     permissions: [],
-    description: 'Set your embed response color!',
+    description: 'Change your embed response color!',
     cooldown: 5000,
     execute: (client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql) => {
         let command = new Color(client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql);
