@@ -10,10 +10,10 @@ class Color extends BaseCommand {
         const { client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql, embedBuilder } = this;
         
         if (validHexColor.check(args[0])) {
-            sql.query('SELECT * FROM user_Embed_Settings', (error, results) => {
+            sql.query('SELECT * FROM user_Embed_Settings;', (error, results) => {
                 if (error) throw error;
                 if (results.length === 0) {
-                    sql.query('INSERT INTO user_Embed_Settings (user_id, user_embed_color) VALUES (?, ?)', [message.author.id, args[0]], (error) => {
+                    sql.query('INSERT INTO user_Embed_Settings (user_id, user_embed_color) VALUES (?, ?);', [message.author.id, args[0]], (error) => {
                         if (error) throw error;
                     });
                 } else {

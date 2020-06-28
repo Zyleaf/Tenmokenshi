@@ -2,9 +2,7 @@ const dotenv = require('dotenv').config();
 const mysql = require('mysql');
 const sql = mysql.createConnection({ host: process.env.DB_HOST, user: process.env.DB_USER, password: process.env.DB_PASSWORD, database: process.env.DB_DATABASE });
 
-module.exports = commandChecker = async (client, message, PREFIX) => {
-    if (message.author.bot) return;
-    
+module.exports = commandChecker = async (client, message, PREFIX) => {    
     if (message.content.startsWith(PREFIX)) {
         const commandName = message.content.substring(message.content.indexOf(PREFIX) + 1).split(new RegExp(/\s+/)).shift().toUpperCase();
         const args = message.content.substring(message.content.indexOf(' ') + 1).split(' ');

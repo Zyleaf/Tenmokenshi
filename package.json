@@ -4,7 +4,8 @@
   "description": "A multi-purpose Discord bot!",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -30,5 +31,8 @@
     "readdir-plus": "^1.1.1",
     "tenorjs": "^1.0.7",
     "valid-hex-color": "^1.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }

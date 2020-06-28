@@ -41,7 +41,6 @@ const embedBuilder = (color, author, title, url, thumbnail, description, fields,
     return builtEmbed;
 }
 
-
 module.exports = collectors = async (client, message, guildInfo) => {
     const filter = m => true;
     const otherChannel = message.client.guilds.cache.get(guildInfo.guild.guildID).channels.cache.get(guildInfo.channel.channelID);

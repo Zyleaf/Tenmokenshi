@@ -6,7 +6,7 @@ class Ping extends BaseCommand {
     }
 
     run = async () => {
-        const { client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql } = this;
+        const { client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql, embedBuilder } = this;
         message.channel.send('Pong!');
     }
 }
