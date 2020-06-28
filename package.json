@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A multi-purpose Discord bot!",
   "main": "src/index.js",
+  "engines": {
+    "node": "v14.4.0"
+  },
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
