@@ -8,7 +8,9 @@ class Utility extends BaseCommand {
     run = async () => {
         const { client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql, embedBuilder } = this;
         message.channel.send(embedBuilder(true, true, `List of utility commands!`, false, false, false, [
-            { name: '`Avatar`', value: '\`\`\`Get an user\'s avatar!\`\`\`', inline: true }
+            { name: '`Avatar`', value: '\`\`\`Get an user\'s avatar!\`\`\`', inline: true },
+            { name: '`Weather`', value: '\`\`\`Get the weather info about a city or country!\`\`\`', inline: true },
+            { name: '`Answer`', value: '\`\`\`The bot answers your question!\`\`\`', inline: true }
         ], false, true, true));
     }
 }
