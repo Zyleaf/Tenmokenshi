@@ -10,6 +10,7 @@ class Moderation extends BaseCommand {
         message.channel.send(embedBuilder(true, true, `List of moderation commands!`, false, false, false, [
             { name: '`Kick`',  value: '\`\`\`Kick a member!\`\`\`', inline: true },
             { name: '`Ban`',  value: '\`\`\`Ban a member!\`\`\`', inline: true },
+            { name: '`Unban`',  value: '\`\`\`Uban an user!\`\`\`', inline: true },
             { name: '`Clear`',  value: '\`\`\`Bulk delete messages!\`\`\`', inline: true }
         ], false, true, true));
     }
@@ -18,7 +19,7 @@ class Moderation extends BaseCommand {
 module.exports = {
     name: 'Moderation',
     usage: [],
-    aliases: [],
+    aliases: ['mod'],
     requiredArgs: false,
     permissions: [],
     description: 'List of all the moderation commands!',

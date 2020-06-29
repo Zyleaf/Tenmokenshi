@@ -1,4 +1,4 @@
-const BaseCommand = require('../../helpers/BaseCommand');
+const BaseCommand = require('../../../helpers/BaseCommand');
 
 class SetChannel extends BaseCommand {
     constructor(client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql) {

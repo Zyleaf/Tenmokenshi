@@ -1,5 +1,5 @@
-const BaseCommand = require('../../helpers/BaseCommand');
-const collectors = require('../../snippets/userphoneCommand/collectors');
+const BaseCommand = require('../../../helpers/BaseCommand');
+const collectors = require('../../../snippets/userphoneCommand/collectors');
 
 class Userphone extends BaseCommand {
     constructor(client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql) {

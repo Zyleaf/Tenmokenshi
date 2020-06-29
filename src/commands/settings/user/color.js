@@ -1,4 +1,4 @@
-const BaseCommand = require('../../helpers/BaseCommand');
+const BaseCommand = require('../../../helpers/BaseCommand');
 const validHexColor = require('valid-hex-color');
 
 class Color extends BaseCommand {

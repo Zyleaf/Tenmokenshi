@@ -1,4 +1,4 @@
-const BaseCommand = require('../../helpers/BaseCommand');
+const BaseCommand = require('../../../helpers/BaseCommand');
 
 class Prefix extends BaseCommand {
     constructor(client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql) {

@@ -11,6 +11,9 @@ class Social extends BaseCommand {
             {name: '`Userphone`', value: '\`\`\`Chat with another server!\`\`\`', inline: true},
             {name: '`Setchannel`', value: '\`\`\`Set the global chat channel!\`\`\`', inline: true},
             {name: '`Removechannel`', value: '\`\`\`Remove the global chat channel!\`\`\`', inline: true},
+            {name: '`Waifu`', value: '\`\`\`Get a waifu picture!\`\`\`', inline: true},
+            {name: '`Fact`', value: '\`\`\`Get a random fact!\`\`\`', inline: true},
+            {name: '`Actions`', value: '\`\`\`Cuddle, Poke, Tickle, Kiss, Feed, Hug, Pat, Slap, Meow, Woof\`\`\`', inline: true},
         ], false, true, true));
     }
 }
