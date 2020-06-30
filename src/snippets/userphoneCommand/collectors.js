@@ -98,10 +98,12 @@ module.exports = collectors = async (client, message, guildInfo) => {
 
     setTimeout(() => {
         if (client.channel_Connected.has(guildInfo.channel.channelID) && client.channel_Connected.has(message.channel.id)) {
+            thisChannelCollector.stop();
+            thatChannelCollector.stop();
             client.channel_Connected.delete(guildInfo.channel.channelID);
             client.channel_Connected.delete(message.channel.id);
             message.channel.send(embedBuilder(true, false, false, false, false, `Time is up! The connection with \`${otherChannel.guild.name}\` ended!`, false, false, true, false, client, message));
             otherChannel.send(embedBuilder(true, false, false, false, false, `Time is up! The connection with \`${message.channel.guild.name}\` ended!`, false, false, true, false, client, message));
         }
-    }, 90000);
+    }, 900000);
 };

@@ -13,6 +13,7 @@ class Help extends BaseCommand {
             { name: '`General`',  value: '\`\`\`List of all the general commands!\`\`\`', inline: true },
             { name: '`Moderation`',  value: '\`\`\`List of all the moderation commands!\`\`\`', inline: true },
             { name: '`Social`',  value: '\`\`\`List of all the social commands!\`\`\`', inline: true },
+            { name: '`Math`',  value: '\`\`\`List of all the math commands!\`\`\`', inline: true },
             { name: '`Utility`',  value: '\`\`\`List of all the utility commands!\`\`\`', inline: true },
             { name: '`Settings`',  value: '\`\`\`List of all the settings commands!\`\`\`', inline: true },
         ], false, true, true));
