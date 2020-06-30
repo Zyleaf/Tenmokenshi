@@ -14,6 +14,8 @@ client.user_Embed_Settings  = new Map();
 client.connection_Manager   = new Map();
 client.channel_Connected    = new Map();
 client.guild_Chat_Channels  = new Map();
+client.game_Manager         = new Map();
+client.game_Connected       = new Map();
 
 (async () => {
     await registerCommands(client);
