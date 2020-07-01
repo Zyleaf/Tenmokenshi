@@ -25,7 +25,7 @@ const embedBuilder = (color, author, title, url, thumbnail, description, fields,
 
 module.exports = startGame = async (client, message, guildInfo) => {
     const otherChannel = message.client.guilds.cache.get(guildInfo.guild.guildID).channels.cache.get(guildInfo.channel.channelID);
-    const emoji = await client.emojis.cache.get('727246634177527859');
+    const emoji = await client.emojis.cache.get('727700307890405476');
     const playerEmoji1 = await client.emojis.cache.get('727247452146761778');
     const playerEmoji2 = await client.emojis.cache.get('727531584105873412');
     const block = `<:${emoji.name}:${emoji.id}>`;
@@ -162,10 +162,10 @@ module.exports = startGame = async (client, message, guildInfo) => {
                 default:
                     break;
             };
+        }
 
-            if (reaction.emoji.name === '❌') {
-                endGame(client, message, otherChannel, thisChanCollector, otherChanCollector);
-            }
+        if (reaction.emoji.name === '❌') {
+            endGame(client, message, otherChannel, thisChanCollector, otherChanCollector);
         }
     });
 
@@ -222,10 +222,11 @@ module.exports = startGame = async (client, message, guildInfo) => {
                 default:
                     break;
             };
+        }
 
-            if (reaction.emoji.name === '❌') {
-                endGame(client, message, otherChannel, thisChanCollector, otherChanCollector);
-            }
+        if (reaction.emoji.name === '❌') {
+            endGame(client, message, otherChannel, thisChanCollector, otherChanCollector);
         }
     });
+    
 };

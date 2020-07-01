@@ -50,6 +50,10 @@ class Mul extends BaseCommand {
 
                 const otherChannel = message.client.guilds.cache.get(guildInfo.guild.guildID).channels.cache.get(guildInfo.channel.channelID);
 
+                if (guildInfo.user.userID === message.author.id) {
+                    return message.channel.send(embedBuilder(true, false, false, false, false, `You can't play against yourself!`, false, false, false, false));
+                } 
+
                 message.channel.send(embedBuilder(true, false, false, false, false, `Connection established with \`${guildInfo.guild.guildName}\`!`, false, false, true, false));
                 otherChannel.send(embedBuilder(true, false, false, false, false, `Connection established with \`${message.guild.name}\`!`, false, false, true, false));
 
