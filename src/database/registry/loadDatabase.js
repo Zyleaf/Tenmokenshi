@@ -10,4 +10,5 @@ module.exports = loadDatabase = async (client) => {
     await loadPrefixes(client, sql);
     await loadEmbedColors(client, sql);
     await loadGlobalChannels(client, sql);
+    // Load all the data from DB
 };

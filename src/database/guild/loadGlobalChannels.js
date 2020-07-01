@@ -5,4 +5,5 @@ module.exports = loadGlobalChannels = (client, sql) => {
             client.guild_Chat_Channels.set(result.guild_id, result.channel_id);
         });
     });
+    // Load the global chat channels
 };

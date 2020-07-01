@@ -5,4 +5,5 @@ module.exports = loadPrefixes = (client, sql) => {
             client.prefixes.set(result.guild_id, result.guild_prefix);
         });
     });
+    // Load the guild prefixes
 };
