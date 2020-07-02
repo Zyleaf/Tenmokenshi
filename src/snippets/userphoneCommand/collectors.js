@@ -24,10 +24,10 @@ const embedBuilder = (color, author, title, url, thumbnail, description, fields,
     let user_embed_color = client.user_Embed_Settings.get(message.author.id) ? client.user_Embed_Settings.get(message.author.id) : '#0bff9e';
 
     if (color) builtEmbed.setColor(user_embed_color);
-    if (author) builtEmbed.setAuthor(message.author.username, message.author.avatarURL());
+    if (author) builtEmbed.setAuthor(message.author.tag);
     if (title) builtEmbed.setTitle(title);
     if (url) builtEmbed.setURL(url);
-    if (thumbnail) builtEmbed.setThumbnail(thumbnail);
+    if (thumbnail) builtEmbed.setThumbnail(message.author.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
     if (description) builtEmbed.setDescription(description);
     if (fields) {
         for (const field of fields) {
@@ -47,8 +47,10 @@ module.exports = collectors = async (client, message, guildInfo) => {
     const thisChannelCollector = message.channel.createMessageCollector(filter, { time: 15000000 });
     const thatChannelCollector = otherChannel.createMessageCollector(filter, { time: 15000000 });
 
-    thisChannelCollector.on('collect', m => {
+    thisChannelCollector.on('collect', async m => {
         if (m.author.bot) return;
+        let msg;
+
         if (m.content.toLowerCase() === 'ec') {
             endConnections(thisChannelCollector, thatChannelCollector, guildInfo, message, otherChannel, client);
         } else if (m.content.includes('https://tenor.com') || m.content.includes('https://i.giphy.com')) {
@@ -58,41 +60,70 @@ module.exports = collectors = async (client, message, guildInfo) => {
 
             matches.forEach((match) => {
                 Tenor.Search.Find([id]).then(results => {
-                    otherChannel.send(embedBuilder(true, true, false, false, false, false, false, results[0].media[0].gif.url, false, false, client, m));
+                    otherChannel.send(embedBuilder(true, true, false, false, true, false, false, results[0].media[0].gif.url, false, false, client, m));
                 }).catch(console.error);
             });
         } else if (m.attachments.size > 0) {
-            m.attachments.forEach(attachment => {
+            m.attachments.forEach(async attachment => {
                 let url = attachment.url;
-                otherChannel.send(embedBuilder(true, true, false, false, false, `${m.content}\n[Attachment URL](${url})`, false, url, false, false, client, m));
+                otherChannel.send(embedBuilder(true, true, false, false, true, `${m.content}\n[Attachment URL](${url})`, false, url, false, false, client, m));
             });
         } else {
-            otherChannel.send(embedBuilder(true, true, false, false, false, `${m.content}`, false, false, false, false, client, m));
+            msg = await otherChannel.send(embedBuilder(true, true, false, false, true, `${m.content}`, false, false, false, false, client, m));
+            info = {
+                userMessage: {
+                    guildID: m.guild.id,
+                    channelID: m.channel.id,
+                    messageID: m.id
+                },
+                botMessage: {
+                    guildID: msg.guild.id,
+                    channelID: msg.channel.id,
+                    messageID: msg.id
+                }
+            };
+
+            client.userphone_message_Mapper.set(m.id, info);
         }
     });
 
-    thatChannelCollector.on('collect', m => {
+    thatChannelCollector.on('collect', async m => {
         if (m.author.bot) return;
+        let msg;
+
         if (m.content.toLowerCase() === 'ec') {
             endConnections(thisChannelCollector, thatChannelCollector, guildInfo, message, otherChannel, client);
-        } else if (m.content.includes('https://tenor.com') || m.content.includes('https://i.giphy.com')) {
+        } else if (m.content.includes('https://tenor.com')) {
             const matches = m.content.match(/\bhttps?:\/\/\S+/gi);
             const lastDash = matches[0].lastIndexOf('-');
             const id = matches[0].substring(lastDash + 1, matches[0].length);
 
             matches.forEach((match) => {
                 Tenor.Search.Find([id]).then(results => {
-                    message.channel.send(embedBuilder(true, true, false, false, false, false, false, results[0].media[0].gif.url, false, false, client, m));
+                    message.channel.send(embedBuilder(true, true, false, false, true, false, results[0].media[0].gif.url, false, false, client, m));
                 }).catch(console.error);
             });
         } else if (m.attachments.size > 0) {
-            m.attachments.forEach(attachment => {
+            m.attachments.forEach(async attachment => {
                 let url = attachment.url;
-                message.channel.send(embedBuilder(true, true, false, false, false, `${m.content}\n[Attachment URL](${url})`, false, url, false, false, client, m));
+                message.channel.send(embedBuilder(true, true, false, false, true, `${m.content}\n[Attachment URL](${url})`, false, url, false, false, client, m));
             });
         } else {
-            message.channel.send(embedBuilder(true, true, false, false, false, `${m.content}`, false, false, false, false, client, m));
+            msg = await message.channel.send(embedBuilder(true, true, false, false, true, `${m.content}`, false, false, false, false, client, m));
+            info = {
+                userMessage: {
+                    guildID: m.guild.id,
+                    channelID: m.channel.id,
+                    messageID: m.id
+                },
+                botMessage: {
+                    guildID: msg.guild.id,
+                    channelID: msg.channel.id,
+                    messageID: msg.id
+                }
+            };
 
+            client.userphone_message_Mapper.set(m.id, info);
         }
     });
 

@@ -18,7 +18,7 @@ const embedBuilder = (color, author, title, url, thumbnail, description, fields,
     if (author) builtEmbed.setAuthor(message.author.username, message.author.avatarURL());
     if (title) builtEmbed.setTitle(title);
     if (url) builtEmbed.setURL(url);
-    if (thumbnail) builtEmbed.setThumbnail(thumbnail);
+    if (thumbnail) builtEmbed.setThumbnail(message.author.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
     if (description) builtEmbed.setDescription(description);
     if (fields) {
         for (const field of fields) {
@@ -32,7 +32,7 @@ const embedBuilder = (color, author, title, url, thumbnail, description, fields,
     return builtEmbed;
 }
 
-module.exports = globalChat = (client, message) => {
+module.exports = globalChat = async (client, message) => {
     if (client.guild_Chat_Channels.has(message.guild.id)) {
         if (message.channel.id === client.guild_Chat_Channels.get(message.guild.id)) {
             for (const [g, c] of client.guild_Chat_Channels) {
@@ -42,23 +42,23 @@ module.exports = globalChat = (client, message) => {
                     let guild = message.client.guilds.cache.get(g);
                     let channel = message.client.guilds.cache.get(guild.id).channels.cache.get(c);
 
-                    if (message.content.includes('https://tenor.com') || message.content.includes('https://i.giphy.com')) {
+                    if (message.content.includes('https://tenor.com')) {
                         const matches = message.content.match(/\bhttps?:\/\/\S+/gi);
                         const lastDash = matches[0].lastIndexOf('-');
                         const id = matches[0].substring(lastDash + 1, matches[0].length);
 
                         matches.forEach((match) => {
-                            Tenor.Search.Find([id]).then(results => {
-                                channel.send(embedBuilder(true, true, false, false, false, false, false, results[0].media[0].gif.url, false, false, client, message));
+                            Tenor.Search.Find([id]).then((results) => {
+                                channel.send(embedBuilder(true, true, false, false, true, false, false, results[0].media[0].gif.url, false, false, client, message));
                             }).catch(console.error);
                         });
                     } else if (message.attachments.size > 0) {
-                        message.attachments.forEach(attachment => {
+                        message.attachments.forEach(async (attachment) => {
                             let url = attachment.url;
-                            channel.send(embedBuilder(true, true, false, false, false, `${message.content}\n[Attachment URL](${url})`, false, url, false, false, client, message));
+                            channel.send(embedBuilder(true, true, false, false, true, `${message.content}\n[Attachment URL](${url})`, false, url, false, false, client, message));
                         });
                     } else {
-                        channel.send(embedBuilder(true, true, false, false, false, `${message.content}`, false, false, false, false, client, message));
+                        channel.send(embedBuilder(true, true, false, false, true, `${message.content}`, false, false, false, false, client, message));
                     }
                 }
             }
