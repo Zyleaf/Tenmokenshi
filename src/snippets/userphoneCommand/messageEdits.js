@@ -18,7 +18,7 @@ const embedBuilder = (color, author, title, url, thumbnail, description, fields,
     }
     if (imageURL) builtEmbed.setImage(imageURL);
     if (timeStamp) builtEmbed.setTimestamp();
-    if (footer) builtEmbed.setFooter(`From ${message.guild.name}`, message.guild.iconURL());
+    if (footer) builtEmbed.setFooter(`From ${message.guild.name}・Send ec to end the connection!`, message.guild.iconURL());
 
     return builtEmbed;
 }
