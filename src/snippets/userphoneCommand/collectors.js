@@ -100,16 +100,16 @@ module.exports = collectors = async (client, message, guildInfo) => {
 
             matches.forEach((match) => {
                 Tenor.Search.Find([id]).then(results => {
-                    message.channel.send(embedBuilder(true, true, false, false, true, false, results[0].media[0].gif.url, false, false, client, m));
+                    message.channel.send(embedBuilder(true, true, false, false, true, false, results[0].media[0].gif.url, false, true, client, m));
                 }).catch(console.error);
             });
         } else if (m.attachments.size > 0) {
             m.attachments.forEach(async attachment => {
                 let url = attachment.url;
-                message.channel.send(embedBuilder(true, true, false, false, true, `${m.content}\n[Attachment URL](${url})`, false, url, false, false, client, m));
+                message.channel.send(embedBuilder(true, true, false, false, true, `${m.content}\n[Attachment URL](${url})`, false, url, false, true, client, m));
             });
         } else {
-            msg = await message.channel.send(embedBuilder(true, true, false, false, true, `${m.content}`, false, false, false, false, client, m));
+            msg = await message.channel.send(embedBuilder(true, true, false, false, true, `${m.content}`, false, false, false, true, client, m));
             info = {
                 userMessage: {
                     guildID: m.guild.id,
