@@ -66,7 +66,7 @@ class Userphone extends BaseCommand {
 module.exports = {
     name: 'Userphone',
     usage: [],
-    aliases: [],
+    aliases: ['dial', 'call', 'phone'],
     requiredArgs: false,
     permissions: [],
     description: 'Chat with another server!',

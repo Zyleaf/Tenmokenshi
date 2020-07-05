@@ -15,7 +15,7 @@ const embedBuilder = (color, author, title, url, thumbnail, description, fields,
     let user_embed_color = client.user_Embed_Settings.get(message.author.id) ? client.user_Embed_Settings.get(message.author.id) : '#0bff9e';
 
     if (color) builtEmbed.setColor(user_embed_color);
-    if (author) builtEmbed.setAuthor(message.author.username, message.author.avatarURL());
+    if (author) builtEmbed.setAuthor(message.author.tag, message.author.avatarURL());
     if (title) builtEmbed.setTitle(title);
     if (url) builtEmbed.setURL(url);
     if (thumbnail) builtEmbed.setThumbnail(message.author.avatarURL({ format: 'png', dynamic: true, size: 1024 }));
@@ -27,7 +27,7 @@ const embedBuilder = (color, author, title, url, thumbnail, description, fields,
     }
     if (imageURL) builtEmbed.setImage(imageURL);
     if (timeStamp) builtEmbed.setTimestamp();
-    if (footer) builtEmbed.setFooter(`Requested by ${message.author.username}`, message.guild.iconURL());
+    if (footer) builtEmbed.setFooter(`From ${message.guild.name}`, message.guild.iconURL());
 
     return builtEmbed;
 }
@@ -49,16 +49,16 @@ module.exports = globalChat = async (client, message) => {
 
                         matches.forEach((match) => {
                             Tenor.Search.Find([id]).then((results) => {
-                                channel.send(embedBuilder(true, true, false, false, true, false, false, results[0].media[0].gif.url, false, false, client, message));
+                                channel.send(embedBuilder(true, true, false, false, true, false, false, results[0].media[0].gif.url, false, true, client, message));
                             }).catch(console.error);
                         });
                     } else if (message.attachments.size > 0) {
                         message.attachments.forEach(async (attachment) => {
                             let url = attachment.url;
-                            channel.send(embedBuilder(true, true, false, false, true, `${message.content}\n[Attachment URL](${url})`, false, url, false, false, client, message));
+                            channel.send(embedBuilder(true, true, false, false, true, `${message.content}\n[Attachment URL](${url})`, false, url, false, true, client, message));
                         });
                     } else {
-                        channel.send(embedBuilder(true, true, false, false, true, `${message.content}`, false, false, false, false, client, message));
+                        channel.send(embedBuilder(true, true, false, false, true, `${message.content}`, false, false, false, true, client, message));
                     }
                 }
             }
