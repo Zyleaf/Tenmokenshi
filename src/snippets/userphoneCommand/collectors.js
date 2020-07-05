@@ -36,7 +36,7 @@ const embedBuilder = (color, author, title, url, thumbnail, description, fields,
     }
     if (imageURL) builtEmbed.setImage(imageURL);
     if (timeStamp) builtEmbed.setTimestamp();
-    if (footer) builtEmbed.setFooter(`Requested by ${message.author.username}`, message.guild.iconURL());
+    if (footer) builtEmbed.setFooter(`From ${message.guild.name}`, message.guild.iconURL());
 
     return builtEmbed;
 }
