@@ -18,7 +18,7 @@ const embedBuilder = (color, author, title, url, thumbnail, description, fields,
     }
     if (imageURL) builtEmbed.setImage(imageURL);
     if (timeStamp) builtEmbed.setTimestamp();
-    if (footer) builtEmbed.setFooter(`Requested by ${message.author.username}`, message.guild.iconURL());
+    if (footer) builtEmbed.setFooter(`From ${message.guild.name}`, message.guild.iconURL());
 
     return builtEmbed;
 }
@@ -30,6 +30,6 @@ module.exports = messageEdits = async (client, oldMessage, newMessage) => {
         let channel = newMessage.client.guilds.cache.get(guild.id).channels.cache.get(info.botMessage.channelID);
 
         let msgToEdit = await channel.messages.fetch(info.botMessage.messageID);
-        msgToEdit.edit(embedBuilder(true, true, false, false, true, `${newMessage.content}`, false, false, false, false, client, newMessage));
+        msgToEdit.edit(embedBuilder(true, true, false, false, true, `${newMessage.content}`, false, false, false, true, client, newMessage));
     }
 };
