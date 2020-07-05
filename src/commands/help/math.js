@@ -7,7 +7,7 @@ class Math extends BaseCommand {
 
     run = async () => {
         const { client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql, embedBuilder } = this;
-        const prefix = client.prefixes.get(message.guild.id) ? client.prefixes.get(message.guild.id) : '-';
+
         message.channel.send(embedBuilder(true, true, `List of math commands!`, false, false, false, [
             { name: '`Abs`',  value: '\`\`\`Get the absolute value of an expression!\`\`\`', inline: true },
             { name: '`Derivative`',  value: '\`\`\`Derive a mathematical expression!\`\`\`', inline: true },
