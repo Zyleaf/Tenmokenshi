@@ -14,13 +14,20 @@ module.exports = async (client, member) => {
 
         const embed = new Discord.MessageEmbed()
             .setColor('#ffb7c5')
-            .setTitle(`Welcome to ${member.guild.name}`)
+            .setTitle(`\`\`\`Welcome to ${member.guild.name}!\`\`\``)
             .setThumbnail(member.user.avatarURL({ format: 'png', dynamic: true, size: 1024 }))
-            .setDescription(`**Make sure to read the <#693895682498625536>!\nGet some roles from <#693896090457473054>!\nHave fun and keep learning!**`)
+            .setDescription(`\`\`\`Make sure to read the ・rules-⛩!\nGet some roles from ・self-roles!\nHave fun and keep learning!\`\`\``)
+            .addFields(
+                { name: '\`\`\`RULES\`\`\`', value: '<#693895682498625536>', inline: true },
+                { name: '\`\`\`SELF-ROLES\`\`\`', value: '<#693896090457473054>', inline: true }
+            )
             .setImage(gifUrls[0])
             .setFooter(`You're the ${member.guild.memberCount}th member!`, 'https://i.pinimg.com/originals/7d/09/a4/7d09a485cb23ebed6cb999e0f4302dd6.gif')
             .setTimestamp()
-
-        chatChannel.send(embed);
+        
+        const msg = await chatChannel.send(embed);
+        setTimeout(() => {
+            msg.delete();
+        }, 60000);
     }
 };
