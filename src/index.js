@@ -18,6 +18,7 @@ client.game_Manager = new Map();
 client.game_Connected = new Map();
 client.userphone_message_Mapper = new Map();
 client.global_message_mapper = new Map();
+client.global_message_cooldown = new Map();
 
 (async () => {
     await registerCommands(client);

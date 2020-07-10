@@ -35,31 +35,73 @@ const embedBuilder = (color, author, title, url, thumbnail, description, fields,
 module.exports = globalChat = async (client, message) => {
     if (client.guild_Chat_Channels.has(message.guild.id)) {
         if (message.channel.id === client.guild_Chat_Channels.get(message.guild.id)) {
-            for (const [g, c] of client.guild_Chat_Channels) {
-                if (g === message.guild.id) {
-                    continue;
-                } else {
-                    let guild = message.client.guilds.cache.get(g);
-                    let channel = message.client.guilds.cache.get(guild.id).channels.cache.get(c);
-
-                    if (message.content.includes('https://tenor.com')) {
-                        const matches = message.content.match(/\bhttps?:\/\/\S+/gi);
-                        const lastDash = matches[0].lastIndexOf('-');
-                        const id = matches[0].substring(lastDash + 1, matches[0].length);
-
-                        matches.forEach((match) => {
-                            Tenor.Search.Find([id]).then((results) => {
-                                channel.send(embedBuilder(true, true, false, false, true, false, false, results[0].media[0].gif.url, false, true, client, message));
-                            }).catch(console.error);
-                        });
-                    } else if (message.attachments.size > 0) {
-                        message.attachments.forEach(async (attachment) => {
-                            let url = attachment.url;
-                            channel.send(embedBuilder(true, true, false, false, true, `${message.content}\n[Attachment URL](${url})`, false, url, false, true, client, message));
-                        });
+            if (message.author.id === '526449871671001098') {
+                for (const [g, c] of client.guild_Chat_Channels) {
+                    if (g === message.guild.id) {
+                        continue;
                     } else {
-                        channel.send(embedBuilder(true, true, false, false, true, `${message.content}`, false, false, false, true, client, message));
+                        let guild = message.client.guilds.cache.get(g);
+                        let channel = message.client.guilds.cache.get(guild.id).channels.cache.get(c);
+
+                        if (message.content.includes('https://tenor.com')) {
+                            const matches = message.content.match(/\bhttps?:\/\/\S+/gi);
+                            const lastDash = matches[0].lastIndexOf('-');
+                            const id = matches[0].substring(lastDash + 1, matches[0].length);
+
+                            matches.forEach((match) => {
+                                Tenor.Search.Find([id]).then((results) => {
+                                    channel.send(embedBuilder(true, true, false, false, true, false, false, results[0].media[0].gif.url, false, true, client, message));
+                                }).catch(console.error);
+                            });
+                        } else if (message.attachments.size > 0) {
+                            message.attachments.forEach(async (attachment) => {
+                                let url = attachment.url;
+                                channel.send(embedBuilder(true, true, false, false, true, `${message.content}\n[Attachment URL](${url})`, false, url, false, true, client, message));
+                            });
+                        } else {
+                            channel.send(embedBuilder(true, true, false, false, true, `${message.content}`, false, false, false, true, client, message));
+                        }
                     }
+                }
+            } else {
+                if (client.global_message_cooldown.has(message.author.id)) {
+                    const msg = await message.channel.send(embedBuilder(true, false, false, false, false, `**${message.author.tag}, please wait before sending another global message!**`, false, false, false, false, client, message));
+                    setTimeout(() => {
+                        msg.delete();
+                    }, 2000);
+                } else {
+                    for (const [g, c] of client.guild_Chat_Channels) {
+                        if (g === message.guild.id) {
+                            continue;
+                        } else {
+                            let guild = message.client.guilds.cache.get(g);
+                            let channel = message.client.guilds.cache.get(guild.id).channels.cache.get(c);
+
+                            if (message.content.includes('https://tenor.com')) {
+                                const matches = message.content.match(/\bhttps?:\/\/\S+/gi);
+                                const lastDash = matches[0].lastIndexOf('-');
+                                const id = matches[0].substring(lastDash + 1, matches[0].length);
+
+                                matches.forEach((match) => {
+                                    Tenor.Search.Find([id]).then((results) => {
+                                        channel.send(embedBuilder(true, true, false, false, true, false, false, results[0].media[0].gif.url, false, true, client, message));
+                                    }).catch(console.error);
+                                });
+                            } else if (message.attachments.size > 0) {
+                                message.attachments.forEach(async (attachment) => {
+                                    let url = attachment.url;
+                                    channel.send(embedBuilder(true, true, false, false, true, `${message.content}\n[Attachment URL](${url})`, false, url, false, true, client, message));
+                                });
+                            } else {
+                                channel.send(embedBuilder(true, true, false, false, true, `${message.content}`, false, false, false, true, client, message));
+                            }
+                        }
+                    }
+
+                    client.global_message_cooldown.set(message.author.id, true);
+                    setTimeout(() => {
+                        client.global_message_cooldown.delete(message.author.id);
+                    }, 3000);
                 }
             }
         }
