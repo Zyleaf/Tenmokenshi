@@ -8,8 +8,8 @@ class Games extends BaseCommand {
     run = async () => {
         const { client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql, embedBuilder } = this;
         message.channel.send(embedBuilder(true, true, `List of game commands!`, false, false, false, [
-            { name: '`test`',  value: '\`\`\`A 2D single player sandbox!\`\`\`', inline: true },
-            { name: '`mul`',  value: '\`\`\`A 2D multiplayer sandbox!\`\`\`', inline: true },
+            { name: '`Test`',  value: '\`\`\`A 2D single player sandbox!\`\`\`', inline: true },
+            { name: '`Mul`',  value: '\`\`\`A 2D multiplayer sandbox!\`\`\`', inline: true },
         ], false, true, true));
     }
 }
