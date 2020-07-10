@@ -9,13 +9,14 @@ class Help extends BaseCommand {
         const { client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql, embedBuilder } = this;
         const prefix = client.prefixes.get(message.guild.id) ? client.prefixes.get(message.guild.id) : '-';
         message.channel.send(embedBuilder(true, true, false, false, false, `\`\`\`Do ${prefix}module-name to get a list of commands!\`\`\``, [
-            { name: '`General`',  value: '\`\`\`List of all the general commands!\`\`\`', inline: true },
-            { name: '`Moderation`',  value: '\`\`\`List of all the moderation commands!\`\`\`', inline: true },
-            { name: '`Social`',  value: '\`\`\`List of all the social commands!\`\`\`', inline: true },
-            { name: '`Games`',  value: '\`\`\`List of all the game commands!\`\`\`', inline: true },
-            { name: '`Math`',  value: '\`\`\`List of all the math commands!\`\`\`', inline: true },
-            { name: '`Utility`',  value: '\`\`\`List of all the utility commands!\`\`\`', inline: true },
-            { name: '`Settings`',  value: '\`\`\`List of all the settings commands!\`\`\`', inline: true },
+            { name: '`General`', value: '\`\`\`List of all the general commands!\`\`\`', inline: true },
+            { name: '`Moderation`', value: '\`\`\`List of all the moderation commands!\`\`\`', inline: true },
+            { name: '`Social`', value: '\`\`\`List of all the social commands!\`\`\`', inline: true },
+            { name: '`Games`', value: '\`\`\`List of all the game commands!\`\`\`', inline: true },
+            { name: '`Math`', value: '\`\`\`List of all the math commands!\`\`\`', inline: true },
+            { name: '`Utility`', value: '\`\`\`List of all the utility commands!\`\`\`', inline: true },
+            { name: '`Settings`', value: '\`\`\`List of all the settings commands!\`\`\`', inline: true },
+            { name: '`Support Server`', value: '**[Join](https://discord.com/invite/m6Dnrk5)**', inline: true },
         ], false, true, true));
     }
 }

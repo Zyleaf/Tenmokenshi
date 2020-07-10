@@ -1,4 +1,4 @@
-const BaseCommand = require('../../helpers/BaseCommand');
+const BaseCommand = require('../../../helpers/BaseCommand');
 
 class General extends BaseCommand {
     constructor(client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql) {
@@ -11,6 +11,7 @@ class General extends BaseCommand {
             {name: '`Info`', value: '\`\`\`Shows user settings!\`\`\`', inline: true},
             {name: '`Ping`', value: '\`\`\`Sends back pong!\`\`\`', inline: true},
             {name: '`Stats`', value: '\`\`\`Sends Tenmokenshi\'s stats!\`\`\`', inline: true},
+            {name: '`Invite`', value: '\`\`\`Get a Tenmokenshi invite link!\`\`\`', inline: true},
         ], false, true, true));
     }
 }
