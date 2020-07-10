@@ -30,3 +30,20 @@
     guild_prefix CHAR (1)
   );
 ```
+
+## User embed settings!
+```sql
+  CREATE TABLE user_Embed_Settings (
+    user_id VARCHAR (20),
+    user_embed_color VARCHAR (15) 
+  );
+```
+
+## Guild Chat Channels [Global chat channels]!
+
+```sql
+  CREATE TABLE guild_Chat_Channels (
+    guild_id VARCHAR (20),
+    channel_id VARCHAR (20) 
+  );
+```
