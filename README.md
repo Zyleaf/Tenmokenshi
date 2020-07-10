@@ -5,8 +5,9 @@
 
 ## Get started
 **1. To get started, clone or download this repository!**
-**2. Create an .env file in the main directory.**
-**3. Inside the .env file include these environment variables with your own keys** 
+**2. Run npm install to install all the modules and their dependencies.**
+**3. Create an .env file in the main directory.**
+**4. Inside the .env file include these environment variables with your own keys!** 
 * BOT_TOKEN
 * DB_HOST
 * DB_USER
