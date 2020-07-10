@@ -10,7 +10,7 @@ class Utility extends BaseCommand {
         message.channel.send(embedBuilder(true, true, `List of utility commands!`, false, false, false, [
             { name: '`Avatar`', value: '\`\`\`Get an user\'s avatar!\`\`\`', inline: true },
             { name: '`Weather`', value: '\`\`\`Get the weather info about a city or country!\`\`\`', inline: true },
-            { name: '`Answer`', value: '\`\`\`The bot answers your question!\`\`\`', inline: true }
+            { name: '`Answer`', value: '\`\`\`The bot answers your question!\`\`\`', inline: true },
             { name: '`Google`', value: '\`\`\`Google something and get the search results!\`\`\`', inline: true }
         ], false, true, true));
     }
