@@ -3,7 +3,7 @@
 
 ![Tenmokenshi Logo](https://i.ibb.co/RCCRCB1/Tenmokenshi-Logo.png)
 
-## Get started
+# Get started!
 1. To get started, clone or download this repository!
 2. Run npm install to install all the modules and their dependencies.
 3. Create an .env file in the main directory.
@@ -22,3 +22,11 @@
 * OPENWEATHER_API_KEY
 * WOLFRAMALPHA_API_KEY
 
+# The MySQL database schema!
+## Guild prefixes!
+```sql
+  CREATE TABLE guild_Prefixes (
+    guild_id VARCHAR (20),
+    guild_prefix CHAR (1)
+  );
+```
