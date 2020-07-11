@@ -17,7 +17,7 @@ class Help extends BaseCommand {
             { name: '`Utility`', value: '\`\`\`List of all the utility commands!\`\`\`', inline: true },
             { name: '`Settings`', value: '\`\`\`List of all the settings commands!\`\`\`', inline: true },
             { name: '`Website`', value: '**[Visit](https://tenmokenshi.tk)**', inline: true },
-            { name: '`GitHub`', value: '**[Repository](https://github.com/Zyleaf/Tenmokenshi)**', inline: true },
+            { name: '`Support Server`', value: '**[Join](https://discord.com/oauth2/authorize?client_id=704858947701571666&scope=bot&permissions=8)**', inline: true },
             { name: '`GitHub`', value: '**[Repository](https://github.com/Zyleaf/Tenmokenshi)**', inline: true },
         ], false, true, true));
     }
