@@ -40,7 +40,9 @@ module.exports = globalChat = async (client, message) => {
                     if (g === message.guild.id) {
                         continue;
                     } else {
+                        client.global_message_cooldown.set(message.author.id, true);
                         let guild = message.client.guilds.cache.get(g);
+                        if (!guild) continue;
                         let channel = message.client.guilds.cache.get(guild.id).channels.cache.get(c);
 
                         if (message.content.includes('https://tenor.com')) {
@@ -64,7 +66,7 @@ module.exports = globalChat = async (client, message) => {
                     }
                 }
             } else {
-                if (client.global_message_cooldown.has(message.author.id)) {
+                if (client.global_message_cooldown.get(message.author.id) === true) {
                     const msg = await message.channel.send(embedBuilder(true, false, false, false, false, `**${message.author.tag}, please wait before sending another global message!**`, false, false, false, false, client, message));
                     setTimeout(() => {
                         msg.delete();
@@ -74,7 +76,9 @@ module.exports = globalChat = async (client, message) => {
                         if (g === message.guild.id) {
                             continue;
                         } else {
+                            client.global_message_cooldown.set(message.author.id, true);
                             let guild = message.client.guilds.cache.get(g);
+                            if (!guild) continue;
                             let channel = message.client.guilds.cache.get(guild.id).channels.cache.get(c);
 
                             if (message.content.includes('https://tenor.com')) {
@@ -98,9 +102,8 @@ module.exports = globalChat = async (client, message) => {
                         }
                     }
 
-                    client.global_message_cooldown.set(message.author.id, true);
                     setTimeout(() => {
-                        client.global_message_cooldown.delete(message.author.id);
+                        client.global_message_cooldown.set(message.author.id, false);
                     }, 3000);
                 }
             }
