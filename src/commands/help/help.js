@@ -8,7 +8,7 @@ class Help extends BaseCommand {
     run = async () => {
         const { client, message, permissions, args, parsedArgs, requiredArgs, cooldown, usage, name, sql, embedBuilder } = this;
         const prefix = client.prefixes.get(message.guild.id) ? client.prefixes.get(message.guild.id) : '-';
-        message.channel.send(embedBuilder(true, true, false, false, false, `\`\`\`Do ${prefix}module-name to get a list of commands!\`\`\``, [
+        message.channel.send(embedBuilder(true, true, false, false, false, `\`\`\`Do ${prefix}module to get a list of commands!\`\`\``, [
             { name: '`General`', value: '\`\`\`List of all the general commands!\`\`\`', inline: true },
             { name: '`Moderation`', value: '\`\`\`List of all the moderation commands!\`\`\`', inline: true },
             { name: '`Social`', value: '\`\`\`List of all the social commands!\`\`\`', inline: true },
