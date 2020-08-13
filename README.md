@@ -1,6 +1,6 @@
 # Tenmokenshi
 ## A multi-purpose Discord bot!
-## I will be rewriting this project in TS with Mongo!
+## I will be rewriting this project with Mongo as the DB!
 
 ![Tenmokenshi Logo](https://i.ibb.co/RCCRCB1/Tenmokenshi-Logo.png)
 
