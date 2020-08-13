@@ -2,6 +2,9 @@
 ## A multi-purpose Discord bot!
 ## I will be rewriting this project with Mongo as the DB!
 
+This bot will no longer be maintained.
+The new repo is https://github.com/Zyleaf/Tenmokenshi-Rewrite
+
 ![Tenmokenshi Logo](https://i.ibb.co/RCCRCB1/Tenmokenshi-Logo.png)
 
 # Get started!
